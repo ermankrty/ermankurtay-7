@@ -68,18 +68,17 @@ public class CustomArrayList<T> implements CustomList<T> {
     
 
     @Override
+    
     public int getSize() {
-    	
-    	int count =0;
-		for(int i=0; i < items.length; i++) {
-	
-		if (items[i] != null){
-		
-		count ++;
-	}
-		}
-			return items.length;
-}    
+        int count = 0;
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+ 
 
     @Override
     public T get(int index) {
