@@ -12,56 +12,41 @@ public class CustomArrayList<T> implements CustomList<T> {
 
  
     
-    @Override
-	public boolean add(T item) {
-		
-		if (item == null) return false;
- 
-		if (items.length == size) {
-	 
- 
-			items = Arrays.copyOf(items, items.length * 2);
- 
-			items[counter] = item;
- 
-			counter++;
- 
-			size++;
- 
-		}
- 
-		else {
-	 
-			items[counter] = item;
- 
-			size++;
- 
-			counter++;
-			
-		}
- 
-		return true;
- 
-	}
+	 @Override
+	    public boolean add(T item) {
+	        if (item == null) return false;
 
+	        if (size == items.length) {
+	            items = Arrays.copyOf(items, items.length * 2);
+	        }
+
+	        items[counter] = item;
+	        counter++;
+	        size++;
+	        return true;
+	    }
    
 
-    @Override
-    public boolean add(int index, T item) throws IndexOutOfBoundsException {
-    	
-        if (index < 0 || index >= items.length) {
-            throw new IndexOutOfBoundsException();
-        }
+	 @Override
+	    public boolean add(int index, T item) throws IndexOutOfBoundsException {
+	        if (index < 0 || index > size) {
+	            throw new IndexOutOfBoundsException();
+	        }
 
-        for (int i = size; i > index; i--) {
-            items[i] = items[i - 1];
-        }
+	        if (size == items.length) {
+	            items = Arrays.copyOf(items, items.length * 2);
+	        }
 
-        items[index] = item;
-        size++;
-        return true;
-    }
-    
+	        for (int i = size; i > index; i--) {
+	            items[i] = items[i - 1];
+	        }
+
+	        items[index] = item;
+	        size++;
+	        counter++; // Increment the counter for consistency with the add(T item) method
+	        return true;
+	    }
+
 
 	
     
